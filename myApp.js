@@ -64,13 +64,16 @@ const findPersonById = (personId, done) => {
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
+  
   Person.findById({_id:personId}, (err,res)=>{
     if(err){
       return done(err, null);
     }
     res.favoriteFoods.push(foodToAdd);
-    res.update()
-    done(null, res);
+    res.save((err, res)=>{
+      done(null, res);
+    });
+    
   })
  
 };
