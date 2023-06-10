@@ -69,7 +69,7 @@ const findEditThenSave = (personId, done) => {
       return done(err, null);
     }
     res.favoriteFoods.push(foodToAdd);
-    res.save()
+    res.update()
     done(null, res);
   })
  
