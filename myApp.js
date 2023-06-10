@@ -78,14 +78,13 @@ const findEditThenSave = (personId, done) => {
  
 };
 
-const findAndUpdate = (personName, done) => {
+const findAndUpdate =async (personName, done) => {
   const ageToSet = 20;
-  Person.findOneAndUpdate({name:personName}, {age:ageToSet}, {new:true}, (err,res)=>{
-    if(err){
-      return done(err, null);
-    }
-    done(res, null);
-  })
+  Person.findOneAndUpdate({name:personName}, {age:ageToSet}, {new:true}).then(res=>{
+    done(null, res);
+  }).catch(err=>{
+    done(err, null)
+  });
   
 };
 
